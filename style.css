@@ -1,0 +1,1037 @@
+/* ==========================================================================
+   Don Ramón Barbershop — hoja de estilos base
+   Mobile-first: los estilos base apuntan al celular y recién después
+   se agregan los @media para pantallas más grandes.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES
+   Este es el ÚNICO bloque que hay que tocar para adaptar la web a otro
+   cliente: colores, tipografías, ancho máximo y radios.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colores */
+  --color-bg: #0d0d10;
+  --color-bg-alt: #14141a;
+  --color-surface: #1b1b22;
+  --color-gold: #c9a227;
+  --color-gold-soft: #e3c46a;
+  --color-text: #f4f1ea;
+  --color-text-muted: #a7a29a;
+  --color-border: rgba(201, 162, 39, 0.22);
+  --color-whatsapp: #25d366;
+
+  /* Tipografías */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Layout */
+  --container-width: 1140px;
+  --radius-sm: 4px;
+  --radius: 8px;
+  --section-padding: 4.5rem 0;
+
+  /*Movimiento*/
+  --transition: 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   3. UTILIDADES
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Accesibilidad: texto solo para lectores de pantalla */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Foco visible para navegación por teclado */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Enlace para saltar al contenido (aparece solo al navegar con teclado) */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 100;
+  padding: 0.6rem 1.2rem;
+  background: var(--color-gold);
+  color: #111;
+  font-weight: 600;
+  transform: translate(-50%, -120%);
+  transition: transform var(--transition);
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* --------------------------------------------------------------------------
+   4. BOTONES
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+  transition: transform var(--transition), background-color var(--transition),
+    border-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* WhatsApp: verde de marca, alto contraste con el fondo oscuro */
+.btn--wa {
+  background-color: var(--color-whatsapp);
+  color: #0a2c17;
+  box-shadow: 0 10px 25px -12px rgba(37, 211, 102, 0.75);
+}
+
+.btn--wa:hover {
+  background-color: #1fbe5a;
+  box-shadow: 0 14px 30px -12px rgba(37, 211, 102, 0.9);
+}
+
+/* Botón secundario: solo contorno dorado */
+.btn--ghost {
+  border-color: var(--color-border);
+  color: var(--color-gold-soft);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-gold);
+  background-color: rgba(201, 162, 39, 0.08);
+}
+
+.btn__icon {
+  flex-shrink: 0;
+}
+
+.btn--sm {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.85rem;
+}
+
+.btn--lg {
+  padding: 1.05rem 2rem;
+  font-size: 1.05rem;
+  width: 100%;
+}
+
+@media (min-width: 30rem) {
+  .btn--lg {
+    width: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. HEADER FIJO
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  background-color: rgba(13, 13, 16, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+/* Clase que agrega el JS al hacer scroll */
+.header.is-scrolled {
+  border-bottom-color: var(--color-border);
+  background-color: rgba(13, 13, 16, 0.98);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 4.25rem;
+}
+
+/* --- Logo --- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-gold);
+}
+
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand__name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand__role {
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* --- Botón hamburguesa (solo mobile) --- */
+.nav-toggle {
+  display: grid;
+  place-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.nav-toggle__bar {
+  display: block;
+  width: 1.15rem;
+  height: 2px;
+  background-color: var(--color-text);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* Animación de hamburguesa a cruz */
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Menú desplegable en mobile --- */
+.nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem 1.25rem 1.75rem;
+  background-color: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+  /* Oculto por defecto; el JS alterna la clase .is-open */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.75rem);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+}
+
+.nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.nav__link {
+  display: block;
+  padding: 0.7rem 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color var(--transition);
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--color-gold-soft);
+}
+
+/* --- A partir de tablet el menú vuelve a ser horizontal --- */
+@media (min-width: 48rem) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0;
+    background-color: transparent;
+    border-bottom: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    gap: 1.4rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. HERO
+   -------------------------------------------------------------------------- */
+.hero {
+  /* El header es fijo: este padding lo compensa */
+  padding: 8rem 0 4.5rem;
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(201, 162, 39, 0.12), transparent 70%),
+    linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+  text-align: center;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-gold-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 8vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* El "em" en cursiva dorada le da el toque elegante */
+.hero__title em {
+  color: var(--color-gold);
+  font-style: italic;
+}
+
+.hero__lead {
+  max-width: 34rem;
+  margin: 1.25rem auto 2rem;
+  color: var(--color-text-muted);
+  font-size: 1.02rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: stretch;
+  max-width: 26rem;
+  margin-inline: auto;
+}
+
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin-top: 2.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero__badges li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+/* Puntito dorado de separación */
+.hero__badges li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-gold);
+  transform: translateY(-50%);
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    padding: 10rem 0 6rem;
+  }
+
+  .hero__actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. ENCABEZADO DE SECCIÓN (reutilizado por todas las secciones)
+   -------------------------------------------------------------------------- */
+.section {
+  padding: var(--section-padding) 0;
+}
+
+.section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section__head {
+  max-width: 40rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.section__eyebrow {
+  color: var(--color-gold);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.section__title {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 5vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.section__lead {
+  margin-top: 1rem;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   8. SERVICIOS
+   -------------------------------------------------------------------------- */
+.services__grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+.service {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.75rem 1.5rem;
+  background-color: var(--color-surface);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.service:hover {
+  border-color: var(--color-border);
+  transform: translateY(-4px);
+}
+
+.service__name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+
+.service__desc {
+  flex: 1;
+  color: var(--color-text-muted);
+  font-size: 0.94rem;
+}
+
+.service__price {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-gold-soft);
+}
+
+.service__price span {
+  font-size: 1.1rem;
+  vertical-align: 0.55em;
+  margin-right: 0.1rem;
+}
+
+.service__cta {
+  align-self: flex-start;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.service__cta:hover {
+  color: var(--color-gold-soft);
+  border-color: var(--color-gold);
+}
+
+/* Tarjeta destacada del combo */
+.service--featured {
+  background-color: linear-gradient(160deg, rgba(201, 162, 39, 0.14), transparent 60%), var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.service__flag {
+  position: absolute;
+  top: -0.7rem;
+  left: 1.5rem;
+  padding: 0.2rem 0.7rem;
+  background-color: var(--color-gold);
+  color: #16130a;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.services__note {
+  margin-top: 2.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+/* 2 columnas en tablet, 4 en desktop */
+@media (min-width: 40rem) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .services__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. GALERÍA
+   -------------------------------------------------------------------------- */
+.gallery__grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gallery__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  aspect-ratio: 1 / 1;
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Estado inicial: la foto real entra con un fundido cuando carga */
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.4s ease;
+}
+
+.gallery__img.is-loaded {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Zoom suave al pasar el mouse (solo en dispositivos que lo soportan) */
+@media (hover: hover) {
+  .gallery__item:hover .gallery__img {
+    transform: scale(1.06);
+  }
+}
+
+@media (min-width: 40rem) {
+  .gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .gallery__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   10. SOBRE NOSOTROS
+   -------------------------------------------------------------------------- */
+.about__inner {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.section__title + .about__lead {
+  margin-top: 1rem;
+}
+
+.about__lead {
+  color: var(--color-text-muted);
+  margin-bottom: 1.75rem;
+  max-width: 32rem;
+}
+
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.75rem 1rem;
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.stat__value {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-gold-soft);
+  line-height: 1.1;
+}
+
+.stat__label {
+  margin-top: 0.35rem;
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* En teléfonos chicos las 3 columnas quedan demasiado angostas,
+   así que cada dato pasa a ser una fila: valor a la izquierda, etiqueta a la derecha. */
+@media (max-width: 29.99rem) {
+  .about__stats {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0.5rem 1.25rem;
+    text-align: left;
+  }
+
+  .stat {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .stat:last-child {
+    border-bottom: 0;
+  }
+
+  .stat__label {
+    margin-top: 0;
+    text-align: right;
+  }
+}
+
+@media (min-width: 64rem) {
+  .about__inner {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 4rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. RESEÑAS
+   -------------------------------------------------------------------------- */
+.reviews__grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.75rem 1.5rem;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.review__stars {
+  color: var(--color-gold);
+  font-size: 1.05rem;
+  letter-spacing: 0.15em;
+}
+
+.review__text {
+  flex: 1;
+  color: var(--color-text);
+  font-size: 0.98rem;
+}
+
+/* Comillas decorativas de la cita */
+.review__text p {
+  position: relative;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-border);
+}
+
+.review__author {
+  display: flex;
+  flex-direction: column;
+}
+
+.review__name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: normal;
+}
+
+.review__meta {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+@media (min-width: 48rem) {
+  .reviews__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. UBICACIÓN Y HORARIOS
+   -------------------------------------------------------------------------- */
+.location__inner {
+  display: grid;
+  gap: 2rem;
+}
+
+.location__subtitle {
+  margin-bottom: 0.6rem;
+  color: var(--color-gold-soft);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.location__subtitle + * {
+  margin-bottom: 1.75rem;
+}
+
+.location__block {
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+
+.schedule {
+  width: 100%;
+  max-width: 22rem;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.schedule th,
+.schedule td {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.schedule th {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.schedule td {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.location__cta {
+  margin-top: 1.75rem;
+}
+
+.location__map {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.location__map iframe {
+  display: block;
+  width: 100%;
+  height: 20rem;
+  border: 0;
+  /* El mapa de Google viene con su propio filtro: lo ajustamos al tema */
+  filter: grayscale(0.35) contrast(1.05);
+}
+
+@media (min-width: 48rem) {
+  .location__map iframe {
+    height: 100%;
+    min-height: 24rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .location__inner {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 3rem;
+    align-items: stretch;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. FOOTER
+   -------------------------------------------------------------------------- */
+.footer {
+  padding-top: 3.5rem;
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  font-size: 0.92rem;
+}
+
+.footer__inner {
+  display: grid;
+  gap: 2.25rem;
+  padding-bottom: 2.5rem;
+}
+
+.footer__tagline {
+  margin-top: 1rem;
+  max-width: 22rem;
+  color: var(--color-text-muted);
+}
+
+.footer__title {
+  margin-bottom: 0.9rem;
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.footer__col ul {
+  display: grid;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+.footer__col a {
+  transition: color var(--transition);
+}
+
+.footer__col a:hover,
+.footer__col a:focus-visible {
+  color: var(--color-gold-soft);
+}
+
+.footer__social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-block: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+@media (min-width: 48rem) {
+  .footer__inner {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. ANIMACIONES DE ENTRADA (fade-in al hacer scroll)
+   Solo se aplican si hay JavaScript activo (clase .has-js que agrega
+   script.js). Sin JS, todo el contenido se ve normal.
+   -------------------------------------------------------------------------- */
+.has-js [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.has-js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   15. MEJORAS RESPONSIVE Y ACCESIBILIDAD
+   -------------------------------------------------------------------------- */
+
+/* Pantallas muy angostas (teléfonos viejos de 320px) */
+@media (max-width: 22.5rem) {
+  .btn--lg {
+    padding: 0.95rem 1.2rem;
+    font-size: 0.98rem;
+  }
+
+  .hero__title {
+    font-size: 2.1rem;
+  }
+
+  .service {
+    padding: 1.5rem 1.15rem;
+  }
+}
+
+/* Pantallas muy anchas: se aprovecha mejor el ancho */
+@media (min-width: 90rem) {
+  :root {
+    --container-width: 1280px;
+  }
+}
+
+/* Espaciado vertical más aireado en desktop */
+@media (min-width: 64rem) {
+  .section__head {
+    margin-bottom: 4rem;
+  }
+}
+
+/* Quien pida menos movimiento no recibe animaciones ni scroll suave */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .has-js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. BASE DESKTOP
+   -------------------------------------------------------------------------- */
+@media (min-width: 48rem) {
+  :root {
+    --section-padding: 6.5rem 0;
+  }
+
+  .container {
+    padding-inline: 2rem;
+  }
+}

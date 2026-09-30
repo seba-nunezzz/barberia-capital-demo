@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===================== SEO BÁSICO =====================
+       Para publicar: cambiar la URL del canonical y de og:url por el
+       dominio real del cliente. -->
+
+  <title>Don Ramón Barbershop | Barbería en Montevideo — Reservá por WhatsApp</title>
+  <meta name="description" content="Barbería clásica en el Cordón, Montevideo. Corte $450, barba $320 y combo $700. Turnos de lunes a sábado. Reservá por WhatsApp en 1 minuto.">
+  <meta name="author" content="Don Ramón Barbershop">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://seba-nunezzz.github.io/barberia-demo/">
+
+  <!-- Open Graph: cómo se ve el link en WhatsApp, Facebook e Instagram -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_UY">
+  <meta property="og:site_name" content="Don Ramón Barbershop">
+  <meta property="og:url" content="https://seba-nunezzz.github.io/barberia-demo/">
+  <meta property="og:title" content="Don Ramón Barbershop | Barbería en Montevideo">
+  <meta property="og:description" content="Corte clásico, barba afilada y buena conversación. Reservá tu turno por WhatsApp.">
+  <!-- Imagen para compartir en redes: 1200x630, servida desde el propio repo -->
+  <meta property="og:image" content="https://seba-nunezzz.github.io/barberia-demo/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0d0d10">
+
+  <!-- Favicon inline: tijera dorada. Evita un pedido extra al servidor -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%230d0d10'/%3E%3Cg stroke='%23c9a227' stroke-width='1.7' fill='none' stroke-linecap='round'%3E%3Ccircle cx='7' cy='17' r='2.6'/%3E%3Ccircle cx='7' cy='7' r='2.6'/%3E%3Cpath d='M9.2 8.4 18 18M9.2 15.6 18 6'/%3E%3C/g%3E%3C/svg%3E">
+
+  <!-- ===================== TIPOGRAFÍAS =====================
+       Autoalojadas en /fonts, no enlazadas a Google Fonts: la hoja de
+       estilos de Google era render-blocking y costaba ~1,1 s extra de
+       espera. Al estar en el mismo dominio, todo se pide y cachea junto.
+
+       Los 2 preload son los archivos "latin", los únicos que descarga una
+       página en español (á é í ó ú ñ ¿ ¡ están en ese rango). Así el
+       navegador empieza a bajar la fuente en paralelo con el HTML. -->
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts/fonts.css">
+
+  <!-- Datos estructurados: ayuda a Google a mostrar el local en el mapa -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "name": "Don Ramón Barbershop",
+    "description": "Barbería clásica en el Cordón, Montevideo. Corte, barba y perfilado.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Brasil 1420",
+      "addressLocality": "Montevideo",
+      "postalCode": "11300",
+      "addressCountry": "UY"
+    },
+    "telephone": "+59894123456",
+    "priceRange": "$$",
+    "openingHours": ["Mo-Fr 09:00-20:00", "Sa 09:00-18:00"]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="inicio">
+  <!-- Saltar al contenido: accessibility para teclado y lectores de pantalla -->
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+
+  <!-- ===================== HEADER FIJO ===================== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="brand" href="#inicio" aria-label="Don Ramón Barbershop, ir al inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="6" cy="18" r="3"></circle>
+            <path d="M20 4 8.5 15.5"></path>
+            <path d="M14.5 14.5 20 20"></path>
+            <path d="M8.5 8.5 11 11"></path>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__name">Don Ramón</span>
+          <span class="brand__role">Barbershop</span>
+        </span>
+      </a>
+
+      <!-- Botón hamburguesa: solo visible en celular -->
+      <button class="nav-toggle" id="navToggle" type="button"
+              aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú de navegación">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="nav" id="navMenu" aria-label="Navegación principal">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#servicios">Servicios</a></li>
+          <li><a class="nav__link" href="#galeria">Galería</a></li>
+          <li><a class="nav__link" href="#nosotros">Nosotros</a></li>
+          <li><a class="nav__link" href="#resenas">Reseñas</a></li>
+          <li><a class="nav__link" href="#contacto">Contacto</a></li>
+        </ul>
+        <a class="btn btn--wa btn--sm" data-wa="reserva"
+           href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno" target="_blank" rel="noopener">
+          Reservar turno
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner" data-reveal>
+        <p class="hero__eyebrow">Barbería clásica · Cordón, Montevideo</p>
+
+        <h1 class="hero__title" id="hero-title">
+          Corte impecable,<br><em>barba afilada</em>
+        </h1>
+
+        <p class="hero__lead">
+          Navaja caliente, toalla caliente y buena conversación. Reservá tu turno en menos de
+          un minuto por WhatsApp, sin esperas ni llamadas perdidas.
+        </p>
+
+        <div class="hero__actions">
+          <!-- data-wa permite que el JS arme el link con el mensaje correcto -->
+          <a class="btn btn--wa btn--lg" data-wa="reserva"
+             href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno"
+             target="_blank" rel="noopener">
+            <svg class="btn__icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.83c0 4.54-3.7 8.21-8.25 8.21z"></path>
+              <path d="M9.35 7.6c-.2 0-.41.07-.6.28-.19.21-.72.7-.72 1.72s.74 1.99.85 2.13c.1.14 1.43 2.18 3.47 3.06 2.04.88 2.04.59 2.41.55.37-.03 1.19-.48 1.36-.95.17-.47.17-.87.12-.95-.05-.09-.2-.14-.41-.24-.21-.11-1.25-.62-1.44-.69-.19-.07-.34-.1-.48.1-.14.21-.55.69-.67.83-.12.14-.24.16-.45.05-.21-.1-.89-.33-1.7-1.05-.63-.56-1.05-1.25-1.17-1.46-.12-.21-.01-.33.09-.43.09-.09.21-.24.31-.36.1-.12.14-.21.21-.35.07-.14.03-.26-.02-.36-.05-.1-.47-1.15-.65-1.57-.17-.41-.34-.36-.47-.36z"></path>
+            </svg>
+            Reservar por WhatsApp
+          </a>
+
+          <a class="btn btn--ghost btn--lg" href="#servicios">Ver precios</a>
+        </div>
+
+        <ul class="hero__badges">
+          <li>Turnos de lunes a sábado</li>
+          <li>Siempre con turno, sin fila</li>
+          <li>Café de la casa</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== SERVICIOS Y PRECIOS ===================== -->
+    <section class="section services" id="servicios" aria-labelledby="servicios-title">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="section__eyebrow">La carta</p>
+          <h2 class="section__title" id="servicios-title">Servicios y precios</h2>
+          <p class="section__lead">
+            Precios en pesos uruguayos, sin sorpresas. Todos los servicios incluyen
+            consulta inicial y acabado con navaja.
+          </p>
+        </header>
+
+        <ul class="services__grid">
+          <li class="service" data-reveal>
+            <h3 class="service__name">Corte clásico</h3>
+            <p class="service__desc">
+              Corte a máquina o tijera, lavado con shampoo y peinado con estilo.
+            </p>
+            <p class="service__price"><span>$</span>450</p>
+            <a class="service__cta" data-wa="corte"
+               href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno%20para%20un%20corte"
+               target="_blank" rel="noopener">Reservar corte</a>
+          </li>
+
+          <li class="service" data-reveal>
+            <h3 class="service__name">Barba completa</h3>
+            <p class="service__desc">
+              Raspa con navaja caliente, toalla caliente, bálsamo y perfume.
+            </p>
+            <p class="service__price"><span>$</span>320</p>
+            <a class="service__cta" data-wa="barba"
+               href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno%20para%20la%20barba"
+               target="_blank" rel="noopener">Reservar barba</a>
+          </li>
+
+          <!-- Tarjeta destacada: es el combo que más se pide -->
+          <li class="service service--featured" data-reveal>
+            <p class="service__flag">Más pedido</p>
+            <h3 class="service__name">Corte + barba</h3>
+            <p class="service__desc">
+              El combo completo. Te sentás una vez, salís listo para todo.
+            </p>
+            <p class="service__price"><span>$</span>700</p>
+            <a class="service__cta" data-wa="combo"
+               href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno%20para%20corte%20%2B%20barba"
+               target="_blank" rel="noopener">Reservar combo</a>
+          </li>
+
+          <li class="service" data-reveal>
+            <h3 class="service__name">Perfilado</h3>
+            <p class="service__desc">
+              Contornos de barba, cejas, patillas y línea de cuello a navaja.
+            </p>
+            <p class="service__price"><span>$</span>180</p>
+            <a class="service__cta" data-wa="perfilado"
+               href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno%20para%20un%20perfilado"
+               target="_blank" rel="noopener">Reservar perfilado</a>
+          </li>
+        </ul>
+
+        <p class="services__note">
+          Efectivo, débito, crédito y transferencia. Los turnos se confirman por WhatsApp.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== GALERÍA =====================
+         Fotos servidas desde /img para que la web no dependa de un CDN
+         externo (si Unsplash cambia un link, estas siguen funcionando).
+         La URL real va en data-src y el src inicial es un SVG vacío del
+         mismo tamaño: pinta el hueco mientras carga y evita saltos de layout. -->
+    <section class="section section--alt gallery" id="galeria" aria-labelledby="galeria-title">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="section__eyebrow">El salón</p>
+          <h2 class="section__title" id="galeria-title">Trabajos que hablan por nosotros</h2>
+          <p class="section__lead">Un vistazo al lugar, la navaja y el mano a mano.</p>
+        </header>
+
+        <ul class="gallery__grid">
+          <li class="gallery__item" data-reveal>
+            <img class="gallery__img" width="640" height="640" loading="lazy" decoding="async"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%231b1b22'/%3E%3C/svg%3E"
+                 data-src="img/galeria-01.jpg"
+                 alt="Interior de la barbería en tonos monocromos, con sillones y toallas">
+          </li>
+          <li class="gallery__item" data-reveal>
+            <img class="gallery__img" width="640" height="640" loading="lazy" decoding="async"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%231b1b22'/%3E%3C/svg%3E"
+                 data-src="img/galeria-02.jpg"
+                 alt="Dos barberos cortando el pelo en un salón moderno">
+          </li>
+          <li class="gallery__item" data-reveal>
+            <img class="gallery__img" width="640" height="640" loading="lazy" decoding="async"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%231b1b22'/%3E%3C/svg%3E"
+                 data-src="img/galeria-03.jpg"
+                 alt="Perfilado con navaja recta junto a la oreja del cliente">
+          </li>
+          <li class="gallery__item" data-reveal>
+            <img class="gallery__img" width="640" height="640" loading="lazy" decoding="async"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%231b1b22'/%3E%3C/svg%3E"
+                 data-src="img/galeria-04.jpg"
+                 alt="Sillones de barbero de cuero contra una pared de ladrillo">
+          </li>
+          <li class="gallery__item" data-reveal>
+            <img class="gallery__img" width="640" height="640" loading="lazy" decoding="async"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%231b1b22'/%3E%3C/svg%3E"
+                 data-src="img/galeria-05.jpg"
+                 alt="Clientes recibiendo su corte dentro del salón">
+          </li>
+          <li class="gallery__item" data-reveal>
+            <img class="gallery__img" width="640" height="640" loading="lazy" decoding="async"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%231b1b22'/%3E%3C/svg%3E"
+                 data-src="img/galeria-06.jpg"
+                 alt="Afeitado de barba con navaja recta y toalla caliente">
+          </li>
+          <li class="gallery__item" data-reveal>
+            <img class="gallery__img" width="640" height="640" loading="lazy" decoding="async"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%231b1b22'/%3E%3C/svg%3E"
+                 data-src="img/galeria-07.jpg"
+                 alt="Ambiente del salón con luz tenue">
+          </li>
+          <li class="gallery__item" data-reveal>
+            <img class="gallery__img" width="640" height="640" loading="lazy" decoding="async"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='640'%3E%3Crect width='100%25' height='100%25' fill='%231b1b22'/%3E%3C/svg%3E"
+                 data-src="img/galeria-08.jpg"
+                 alt="Clientes recibiendo su corte de noche en el salón">
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== SOBRE NOSOTROS ===================== -->
+    <section class="section about" id="nosotros" aria-labelledby="nosotros-title">
+      <div class="container about__inner">
+        <div class="about__text" data-reveal>
+          <p class="section__eyebrow">Más de 10 años</p>
+          <h2 class="section__title" id="nosotros-title">Una barbería de barrio,<br>de las de antes</h2>
+          <p class="about__lead">
+            Don Ramón Barbershop nació en el Cordón con una idea simple: cortar bien,
+            conversar tranquilo y cobrar un precio justo. Más de una década después seguimos
+            con la misma navaja, el mismo café y los mismos clientes.
+          </p>
+          <a class="btn btn--wa" data-wa="reserva"
+             href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno"
+             target="_blank" rel="noopener">Reservar mi turno</a>
+        </div>
+
+        <dl class="about__stats" data-reveal>
+          <div class="stat">
+            <dt class="stat__label">Años en el barrio</dt>
+            <dd class="stat__value">10</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__label">Clientes felices</dt>
+            <dd class="stat__value">+8.000</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__label">Barberos en la plantilla</dt>
+            <dd class="stat__value">3</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================== RESEÑAS ===================== -->
+    <section class="section section--alt reviews" id="resenas" aria-labelledby="resenas-title">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="section__eyebrow">Lo que dicen</p>
+          <h2 class="section__title" id="resenas-title">Reseñas de clientes</h2>
+        </header>
+
+        <ul class="reviews__grid">
+          <li class="review" data-reveal>
+            <p class="review__stars" aria-label="5 de 5 estrellas">★★★★★</p>
+            <blockquote class="review__text">
+              <p>Vengo desde hace 4 años y nunca me fue mal un corte. Siempre preguntan
+              qué quiero y no te apuran. La barba es otro nivel.</p>
+            </blockquote>
+            <footer class="review__author">
+              <cite class="review__name">Martín Fernández</cite>
+              <span class="review__meta">Cliente habitual</span>
+            </footer>
+          </li>
+
+          <li class="review" data-reveal>
+            <p class="review__stars" aria-label="5 de 5 estrellas">★★★★★</p>
+            <blockquote class="review__text">
+              <p>Reservé por WhatsApp un sábado al mediodía y me contestaron en dos
+              minutos. Llegué, me senté, 30 minutos y salí como nuevo.</p>
+            </blockquote>
+            <footer class="review__author">
+              <cite class="review__name">Rodrigo Sosa</cite>
+              <span class="review__meta">Reservó por WhatsApp</span>
+            </footer>
+          </li>
+
+          <li class="review" data-reveal>
+            <p class="review__stars" aria-label="5 de 5 estrellas">★★★★★</p>
+            <blockquote class="review__text">
+              <p>Precio justo, trato excelente y siempre sin fila. Si buscás un barbero
+              de barrio que se tome el tiempo, este es el lugar.</p>
+            </blockquote>
+            <footer class="review__author">
+              <cite class="review__name">Nicolás Pereira</cite>
+              <span class="review__meta">Cliente desde 2022</span>
+            </footer>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== UBICACIÓN Y HORARIOS ===================== -->
+    <section class="section location" id="contacto" aria-labelledby="contacto-title">
+      <div class="container">
+        <header class="section__head" data-reveal>
+          <p class="section__eyebrow">Dónde estamos</p>
+          <h2 class="section__title" id="contacto-title">Ubicación y horarios</h2>
+        </header>
+
+        <div class="location__inner">
+          <!-- Datos de contacto -->
+          <div class="location__data" data-reveal>
+            <h3 class="location__subtitle">Don Ramón Barbershop</h3>
+
+            <address class="location__block">
+              <p>Av. Brasil 1420</p>
+              <p>Cordón, 11300 Montevideo</p>
+              <p>Uruguay</p>
+            </address>
+
+            <h3 class="location__subtitle">Horarios</h3>
+            <table class="schedule">
+              <caption class="sr-only">Horarios de atención</caption>
+              <tbody>
+                <tr>
+                  <th scope="row">Lunes a viernes</th>
+                  <td>09:00 – 20:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sábados</th>
+                  <td>09:00 – 18:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Domingos</th>
+                  <td>Cerrado</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <a class="btn btn--wa location__cta" data-wa="reserva"
+               href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno"
+               target="_blank" rel="noopener">Consultar disponibilidad</a>
+          </div>
+
+          <!--
+            Mapa de Google Maps.
+            Se usa output=embed, que no necesita API key ni facturación.
+            Si el cliente quiere otro mapa, alcanza con cambiar la URL del iframe
+            por la de Google Maps, OpenStreetMap o Google My Maps.
+          -->
+          <div class="location__map" data-reveal>
+            <iframe
+              title="Mapa de la ubicación de Don Ramón Barbershop en Av. Brasil 1420, Montevideo"
+              src="https://www.google.com/maps?q=Av.%20Brasil%201420%2C%20Montevideo%2C%20Uruguay&amp;output=embed"
+              width="600" height="450" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a class="brand" href="#inicio">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="6" cy="6" r="3"></circle>
+              <circle cx="6" cy="18" r="3"></circle>
+              <path d="M20 4 8.5 15.5"></path>
+              <path d="M14.5 14.5 20 20"></path>
+              <path d="M8.5 8.5 11 11"></path>
+            </svg>
+          </span>
+          <span class="brand__text">
+            <span class="brand__name">Don Ramón</span>
+            <span class="brand__role">Barbershop</span>
+          </span>
+        </a>
+        <p class="footer__tagline">Corte clásico, barba afilada y buena conversación. De lunes a sábado.</p>
+      </div>
+
+      <nav class="footer__col" aria-label="Secciones del sitio">
+        <h2 class="footer__title">Secciones</h2>
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#resenas">Reseñas</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col">
+        <h2 class="footer__title">Contacto</h2>
+        <ul>
+          <li>Av. Brasil 1420, Montevideo</li>
+          <li><a href="tel:+59894123456">+598 94 123 456</a></li>
+          <li>
+            <a data-wa="reserva"
+               href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno"
+               target="_blank" rel="noopener">WhatsApp</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__title">Seguinos</h2>
+        <ul class="footer__social">
+          <li>
+            <a href="https://instagram.com/donramonbarbershop" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.8 3.8 0 0 1-1.38-.9 3.8 3.8 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.98c-3.14 0-3.51.01-4.75.07-1.15.05-1.77.24-2.19.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.42-.35 1.04-.4 2.19-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.05 1.15.24 1.77.4 2.19.22.55.47.94.88 1.35.41.41.8.66 1.35.88.42.16 1.04.35 2.19.4 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c1.15-.05 1.77-.24 2.19-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.42.35-1.04.4-2.19.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.05-1.15-.24-1.77-.4-2.19a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.42-.16-1.04-.35-2.19-.4-1.24-.06-1.61-.07-4.75-.07z"></path>
+                <path d="M12 15.34a3.34 3.34 0 1 1 0-6.68 3.34 3.34 0 0 1 0 6.68zm0-1.98a1.36 1.36 0 1 0 0-2.72 1.36 1.36 0 0 0 0 2.72z"></path>
+                <circle cx="18.41" cy="5.59" r="1.44"></circle>
+              </svg>
+              @donramonbarbershop
+            </a>
+          </li>
+          <li>
+            <a data-wa="reserva"
+               href="https://wa.me/59894123456?text=Hola%2C%20quiero%20reservar%20un%20turno"
+               target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.25-4.36c0-4.54 3.7-8.24 8.25-8.24a8.2 8.2 0 0 1 8.24 8.25c0 4.54-3.7 8.21-8.25 8.21z"></path>
+              </svg>
+              WhatsApp directo
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; <span id="anio">2026</span> Don Ramón Barbershop. Todos los derechos reservados.</p>
+      <p class="footer__demo">Demo de portfolio · Nombre, fotos, reseñas, precios y datos de contacto ficticios</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
